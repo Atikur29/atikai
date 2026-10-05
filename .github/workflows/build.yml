@@ -13,14 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Unzip project files
+      - name: Unzip and locate project files
         run: |
-          unzip -o atik-ai.zip -d .
-          # Check if subfolder exists and move files to root if needed
-          if [ -d "atik-ai" ]; then
-            cp -r atik-ai/* . || true
-            cp -r atik-ai/.* . || true
-          fi
+          unzip -o atik-ai.zip -d extracted_temp
+          # Find the folder containing pubspec.yaml and move everything here
+          PUBSPEC_DIR=$(find extracted_temp -name "pubspec.yaml" -exec dirname {} \;)
+          cp -rn $PUBSPEC_DIR/* . || true
+          cp -rn $PUBSPEC_DIR/.* . || true
+          rm -rf extracted_temp
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
