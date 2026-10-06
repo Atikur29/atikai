@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on:ubuntu-latest
-    steps:
+    steps:You have an error in your yaml syntax on line
       - name: Checkout repository
         uses: actions/checkout@v4
 
