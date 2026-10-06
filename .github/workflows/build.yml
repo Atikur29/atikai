@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on:
+    runs-on:ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -52,4 +52,3 @@ jobs:
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
-          
